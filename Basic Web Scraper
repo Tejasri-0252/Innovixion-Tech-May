@@ -1,0 +1,25 @@
+import requests
+from bs4 import BeautifulSoup
+
+def scrape_website(url):
+    response = requests.get(url)
+    
+       if response.status_code == 200:
+               soup = BeautifulSoup(response.text, 'html.parser')
+        
+               articles = soup.find_all('article')
+        
+                    title = article.find('h2').text.strip()
+            link = article.find('a')['href']
+            
+            
+            print("Title:", title)
+            print("Link:", link)
+            print()
+    else:
+        print("Failed to retrieve website content.")
+
+url = 'https://example.com/news'
+
+
+scrape_website(url)
